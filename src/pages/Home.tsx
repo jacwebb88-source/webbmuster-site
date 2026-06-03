@@ -3,44 +3,32 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 
-const pillars = [
+const capabilities = [
   {
-    title: "Market Intelligence",
-    description: "Live grid prices, market trends and forecasting across breeds, specs and processors.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-        <polyline points="16 7 22 7 22 13" />
-      </svg>
-    ),
+    label: "Market Intelligence",
+    description: "Live grid prices, market trends and forecasting across breeds, specs and processors. Know what the market is paying before you make a move.",
   },
   {
-    title: "AI Powered Agents",
-    description: "Intelligent agents that surface the right information at the right time — without you having to go looking for it.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-      </svg>
-    ),
+    label: "AI Powered Agents",
+    description: "Agents working across your data to surface the right information at the right time — without you having to go looking.",
   },
   {
-    title: "End to End Traceability",
-    description: "Every animal tracked from paddock to plant. NVDs, compliance, kill results and provenance in one system.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-        <circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
+    label: "Livestock Traceability",
+    description: "Every animal tracked from paddock to plant. NVDs, compliance, kill results and provenance connected in one system.",
+  },
+  {
+    label: "Operational Forecasting",
+    description: "8 to 12 week outlooks for price, kill volume and cash flow. Plan ahead with data rather than instinct.",
+  },
+  {
+    label: "Compliance Management",
+    description: "HGP conflicts, MSA requirements, export certificates and NVD records tracked automatically.",
+  },
+  {
+    label: "Financial Tools",
+    description: "P&L, livestock trading accounts and cost tracking across your operation. Every dollar in and out.",
   },
 ];
-
-const Chevron = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 18l6-6-6-6" />
-  </svg>
-);
 
 export default function Home() {
   return (
@@ -48,110 +36,143 @@ export default function Home() {
       <Nav />
 
       {/* Hero */}
-      <section className="bg-[#1a3d2b] text-white">
-        <div className="max-w-5xl mx-auto px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
-          <p className="text-green-400 text-[11px] font-semibold uppercase tracking-[0.18em] mb-8">
-            Australian Red Meat Industry
-          </p>
-          <h1 className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] font-bold leading-[1.08] tracking-tight mb-7 max-w-lg">
+      <section className="relative bg-[#060d08] overflow-hidden">
+        <div className="hero-grid absolute inset-0 pointer-events-none" />
+        <div className="hero-glow absolute inset-0 pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-6 md:px-10 pt-24 pb-28 md:pt-32 md:pb-36">
+          <div className="fade-up fade-up-1 inline-flex items-center gap-2 border border-white/10 bg-white/5 rounded-full px-3.5 py-1.5 mb-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
+            <span className="text-white/60 text-xs font-medium">Australian Red Meat Industry</span>
+          </div>
+          <h1 className="fade-up fade-up-2 text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.06] tracking-tight mb-7 max-w-2xl">
             Better decisions.<br />
             Better data.<br />
             Better results.
           </h1>
-          <p className="text-green-100/75 text-base md:text-lg max-w-sm leading-relaxed mb-14">
-            Software for the Australian red meat industry — for producers, feedlots and processors.
+          <p className="fade-up fade-up-3 text-white/50 text-lg max-w-md leading-relaxed mb-12">
+            Software for producers, feedlots and processors to make better decisions and run more efficient operations.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 max-w-xl">
+          <div className="fade-up fade-up-4 flex flex-wrap gap-3">
             <Link
               to="/on-farm"
-              className="group flex items-center justify-between bg-white/10 hover:bg-white/[0.15] border border-white/[0.18] hover:border-white/30 rounded-xl px-6 py-4 transition-all flex-1"
+              className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors"
             >
-              <div>
-                <p className="text-green-400 text-[10px] font-semibold uppercase tracking-[0.14em] mb-0.5">On Farm</p>
-                <p className="text-white font-medium text-sm">Producers &amp; feedlots</p>
-              </div>
-              <span className="text-white/35 group-hover:text-white/70 group-hover:translate-x-0.5 transition-all ml-5 shrink-0">
-                <Chevron />
-              </span>
+              WebbMuster On Farm
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </Link>
             <Link
               to="/processing"
-              className="group flex items-center justify-between bg-white/10 hover:bg-white/[0.15] border border-white/[0.18] hover:border-white/30 rounded-xl px-6 py-4 transition-all flex-1"
+              className="inline-flex items-center gap-2 border border-white/15 text-white/70 hover:text-white hover:border-white/30 font-medium text-sm px-5 py-2.5 rounded-lg transition-colors"
             >
-              <div>
-                <p className="text-green-400 text-[10px] font-semibold uppercase tracking-[0.14em] mb-0.5">Processing</p>
-                <p className="text-white font-medium text-sm">Abattoirs &amp; plants</p>
-              </div>
-              <span className="text-white/35 group-hover:text-white/70 group-hover:translate-x-0.5 transition-all ml-5 shrink-0">
-                <Chevron />
-              </span>
+              WebbMuster Processing
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Two platforms */}
-      <section className="py-20 md:py-28 px-6 md:px-10 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-green-700 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3">Two platforms</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10">Choose your platform.</h2>
+      <section className="py-24 px-6 md:px-10 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-green-600 mb-4">Two platforms</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">One platform, two products.</h2>
+            <p className="text-gray-500 text-sm max-w-xs leading-relaxed">Built for producers and processors — each with tools specific to their operation.</p>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-5">
             <Link
               to="/on-farm"
-              className="group flex flex-col border border-gray-200 hover:border-green-600 hover:shadow-md rounded-2xl p-8 transition-all duration-200"
+              className="group relative flex flex-col bg-gray-50 border border-gray-200 hover:border-gray-300 rounded-2xl p-8 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              <div className="w-10 h-10 bg-[#f0f7f3] rounded-xl flex items-center justify-center text-green-700 mb-6 shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-green-600">On Farm</span>
+                <svg className="text-gray-300 group-hover:text-gray-400 transition-colors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mb-2.5">WebbMuster On Farm</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">WebbMuster On Farm</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">
                 For producers, graziers, backgrounders and feedlots. Market intelligence, livestock traceability and AI powered agents to make the best decisions when selling, buying, trading and breeding.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-green-700 font-semibold text-sm group-hover:gap-2.5 transition-all">
-                Explore On Farm <Chevron />
-              </span>
+              <div className="flex flex-wrap gap-2">
+                {["Market Intelligence", "Livestock Traceability", "AI Agents", "Forecasting"].map(tag => (
+                  <span key={tag} className="text-[11px] font-medium text-gray-500 bg-white border border-gray-200 rounded-full px-3 py-1">{tag}</span>
+                ))}
+              </div>
             </Link>
+
             <Link
               to="/processing"
-              className="group flex flex-col border border-gray-200 hover:border-green-600 hover:shadow-md rounded-2xl p-8 transition-all duration-200"
+              className="group relative flex flex-col bg-gray-50 border border-gray-200 hover:border-gray-300 rounded-2xl p-8 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              <div className="w-10 h-10 bg-[#f0f7f3] rounded-xl flex items-center justify-center text-green-700 mb-6 shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="7" width="20" height="14" rx="2" />
-                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-green-600">Processing</span>
+                <svg className="text-gray-300 group-hover:text-gray-400 transition-colors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mb-2.5">WebbMuster Processing</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">WebbMuster Processing</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">
                 For abattoirs and processing plants. Scheduling, vendor coordination, compliance and animal traceability tools to run an efficient operation from booking to boning.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-green-700 font-semibold text-sm group-hover:gap-2.5 transition-all">
-                Explore Processing <Chevron />
-              </span>
+              <div className="flex flex-wrap gap-2">
+                {["Kill Scheduling", "Vendor Scorecard", "Compliance", "Operations Agent"].map(tag => (
+                  <span key={tag} className="text-[11px] font-medium text-gray-500 bg-white border border-gray-200 rounded-full px-3 py-1">{tag}</span>
+                ))}
+              </div>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Pillars */}
-      <section className="py-20 md:py-28 px-6 md:px-10 bg-[#f0f7f3]">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-green-700 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3">Platform</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10">What WebbMuster does</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {pillars.map((p) => (
-              <div key={p.title} className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
-                <div className="w-10 h-10 bg-[#f0f7f3] rounded-xl flex items-center justify-center text-green-700 mb-5">
-                  {p.icon}
+      {/* Capabilities */}
+      <section className="py-24 px-6 md:px-10 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-green-600 mb-4">Platform</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-16">What WebbMuster does</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+            {capabilities.map((c, i) => (
+              <div key={c.label}>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-[11px] font-mono text-gray-300 select-none w-5">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="font-semibold text-gray-900 text-sm">{c.label}</h3>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{p.description}</p>
+                <p className="text-gray-500 text-sm leading-relaxed pl-8">{c.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pilot CTA */}
+      <section className="py-24 px-6 md:px-10 bg-[#060d08]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="max-w-xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-green-400 mb-4">Pilot Program</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                Running a pilot with your plant?
+              </h2>
+              <p className="text-white/50 text-sm leading-relaxed">
+                We're working with a small number of processing plants to pilot WebbMuster Processing. If you're interested in being part of the first group, get in touch — we'll work through the setup with you directly.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Apply for the pilot
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
