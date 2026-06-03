@@ -25,7 +25,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2.5">
               <div className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
               <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#A8A29E]">
-                Intake Coordination · Red Meat Processing
+                Red Meat · Processing · On Farm
               </span>
             </div>
           </div>
@@ -36,22 +36,18 @@ export default function Home() {
             Nothing lost.
           </h1>
 
-          <p className="fade-up d3 text-xl md:text-2xl text-[#78716C] leading-relaxed max-w-lg mx-auto mt-16 md:mt-20">
-            Muster coordinates livestock intake for red meat processors. Scheduling, compliance and vendor communication — in one system.
-          </p>
-
-          <div className="fade-up d4 mt-16 flex items-center justify-center gap-8">
-            <a href="#contact"
-              className="inline-flex items-center bg-[#D97706] text-[#1C1917] font-bold text-base px-8 py-4 rounded-xl hover:bg-[#B45309] transition-colors">
-              Apply for the pilot
-            </a>
+          <div className="fade-up d3 mt-16 flex items-center justify-center gap-8">
             <Link to="/processing"
+              className="inline-flex items-center bg-[#1C1917] text-white font-bold text-base px-8 py-4 rounded-xl hover:bg-[#2C2825] transition-colors">
+              Muster Processing →
+            </Link>
+            <Link to="/on-farm"
               className="text-base font-medium text-[#A8A29E] hover:text-[#1C1917] transition-colors">
-              How it works →
+              Muster On Farm →
             </Link>
           </div>
 
-          <div className="fade-up d5 mt-36 md:mt-48 pb-40 md:pb-56">
+          <div className="fade-up d4 mt-36 md:mt-48 pb-40 md:pb-56">
             <div className="bg-[#F3F1EB] rounded-3xl border border-[#E5E3DC] px-10 py-14 md:px-16 md:py-20 shadow-2xl shadow-black/[0.05]">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#C4BDB6] mb-16 text-center">
                 The intake chain
