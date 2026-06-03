@@ -4,16 +4,6 @@ import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 import WorkflowDiagram from "../components/WorkflowDiagram";
 
-/* ─── Design system
-   Headings:   display class, tight tracking
-   Body text:  text-base (16px) min — never text-sm for real content
-   Labels:     11px uppercase, 0.22em tracking
-   Sections:   py-40 md:py-64 (160–256px)
-   Between label → heading: mb-12
-   Between heading → body:  mt-10 md:mt-14
-   Between body → cards:    mt-20 md:mt-28
-──────────────────────────────────────────── */
-
 function Label({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A8A29E] mb-12">
@@ -27,13 +17,10 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-[#FAFAF8]">
       <Nav />
 
-      {/* ══ HERO ══════════════════════════════════════════
-          Centered. Enormous breathing room.
-      ═════════════════════════════════════════════════ */}
+      {/* ══ HERO ══════════════════════════════════════════ */}
       <section className="bg-[#FAFAF8]">
         <div className="max-w-4xl mx-auto px-8 md:px-10 text-center">
 
-          {/* Eyebrow */}
           <div className="pt-36 md:pt-56 fade-up d1">
             <div className="inline-flex items-center gap-2.5">
               <div className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
@@ -43,19 +30,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* H1 — 80px below eyebrow */}
           <h1 className="display fade-up d2 text-[2.75rem] md:text-[4rem] lg:text-[5rem] font-extrabold text-[#1C1917] mt-16 md:mt-20 leading-[1.05]">
             From booking.<br />
             <span className="text-[#C4BDB6]">To the floor.</span><br />
             Nothing lost.
           </h1>
 
-          {/* Body — 80px below H1 */}
           <p className="fade-up d3 text-xl md:text-2xl text-[#78716C] leading-relaxed max-w-lg mx-auto mt-16 md:mt-20">
             Muster coordinates livestock intake for red meat processors. Scheduling, compliance and vendor communication — in one system.
           </p>
 
-          {/* CTA — 64px below body */}
           <div className="fade-up d4 mt-16 flex items-center justify-center gap-8">
             <a href="#contact"
               className="inline-flex items-center bg-[#D97706] text-[#1C1917] font-bold text-base px-8 py-4 rounded-xl hover:bg-[#B45309] transition-colors">
@@ -67,7 +51,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Diagram — 160px below CTA */}
           <div className="fade-up d5 mt-36 md:mt-48 pb-40 md:pb-56">
             <div className="bg-[#F3F1EB] rounded-3xl border border-[#E5E3DC] px-10 py-14 md:px-16 md:py-20 shadow-2xl shadow-black/[0.05]">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#C4BDB6] mb-16 text-center">
@@ -80,9 +63,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ PROBLEM ═══════════════════════════════════════
-          Stone bg. Big quote. Body text at real size.
-      ═════════════════════════════════════════════════ */}
+      {/* ══ PROBLEM ═══════════════════════════════════════ */}
       <section className="bg-[#F3F1EB] border-t border-[#E5E3DC] py-40 md:py-64 px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
 
@@ -107,77 +88,6 @@ export default function Home() {
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* ══ SOLUTION ══════════════════════════════════════
-          Warm white. One heading. Three columns with real body text.
-      ═════════════════════════════════════════════════ */}
-      <section className="bg-[#FAFAF8] border-t border-[#E5E3DC] py-40 md:py-64 px-8 md:px-16">
-        <div className="max-w-7xl mx-auto">
-
-          <Label>The solution</Label>
-
-          <h2 className="display text-4xl md:text-5xl font-bold text-[#1C1917] max-w-xl">
-            One platform.<br />Three things done right.
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-16 lg:gap-24 mt-24 md:mt-32">
-            {[
-              { n: "01", title: "Scheduling",    body: "Kill weeks planned weeks in advance. Every booking linked to a vendor, spec and head count. Capacity tracked automatically — no more double bookings, no more gaps." },
-              { n: "02", title: "Compliance",    body: "NVDs, HGP declarations, MSA requirements and export certificates tracked per vendor, per kill. Outstanding paperwork flagged automatically. Nothing falls through." },
-              { n: "03", title: "Communication", body: "Automated reminders for outstanding paperwork. AI-powered morning briefings for your operations team. Vendors kept informed — without the phone calls." },
-            ].map(p => (
-              <div key={p.n}>
-                <span className="block text-[11px] font-bold font-mono text-[#D97706] select-none mb-8">{p.n}</span>
-                <h3 className="text-2xl font-bold text-[#1C1917] mb-6">{p.title}</h3>
-                <p className="text-base text-[#78716C] leading-relaxed">{p.body}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ══ PLATFORM ══════════════════════════════════════
-          Stone bg. Two-col: intro left, feature list right.
-      ═════════════════════════════════════════════════ */}
-      <section className="bg-[#F3F1EB] border-t border-[#E5E3DC] py-40 md:py-64 px-8 md:px-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[5fr_7fr] gap-20 lg:gap-32">
-
-            <div className="lg:sticky lg:top-32 lg:self-start">
-              <Label>Platform</Label>
-              <h2 className="display text-4xl md:text-5xl font-bold text-[#1C1917] mb-8">
-                Built for processors.
-              </h2>
-              <p className="text-base text-[#78716C] leading-relaxed max-w-xs">
-                Every feature in Muster Processing exists because a processor needed it.
-              </p>
-            </div>
-
-            <div>
-              {[
-                { title: "Kill Scheduling",       body: "Forward booking management with capacity tracking across vendors, species and programs. Weeks ahead, not the day of." },
-                { title: "Vendor Coordination",   body: "Every supplier, every booking, every outstanding document in one view. Nothing chased over email." },
-                { title: "Compliance Management", body: "NVDs, HGP conflicts, MSA requirements and export certificates. Tracked automatically, flagged early." },
-                { title: "Operations Agent",      body: "AI morning briefing and real-time kill floor alerts. Know what needs attention before the shift starts." },
-                { title: "Vendor Scorecard",      body: "Reliability and compliance performance scored for every supplier. The data to have the right conversations." },
-                { title: "Forecasting",           body: "12-week kill volume and revenue projections based on forward bookings and historical patterns." },
-              ].map((f, i) => (
-                <div key={f.title} className={`flex gap-10 py-12 border-b border-[#DDD9D2] ${i === 0 ? "pt-0" : ""}`}>
-                  <span className="text-[11px] font-mono font-bold text-[#C8C4BC] pt-1 select-none shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-[#1C1917] mb-3">{f.title}</h3>
-                    <p className="text-base text-[#78716C] leading-relaxed">{f.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
         </div>
       </section>
 
