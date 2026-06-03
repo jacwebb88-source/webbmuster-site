@@ -1,109 +1,104 @@
-const steps = [
+const nodes = [
   {
-    label: "Farm & Feedlot",
-    detail: "Vendor confirms booking",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-      </svg>
-    ),
-    highlight: false,
+    id: "vendor",
+    label: "Vendor",
+    sub: "Pastoral company,\ngrazier or feedlot",
+    accent: false,
+    muster: false,
   },
   {
+    id: "transit",
     label: "Transport",
-    detail: "Movement confirmed",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-      </svg>
-    ),
-    highlight: false,
+    sub: "Livestock in transit\nto the plant",
+    accent: false,
+    muster: false,
   },
   {
-    label: "WebbMuster",
-    detail: "Scheduling · Compliance · Alerts",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-    ),
-    highlight: true,
+    id: "muster",
+    label: "Muster",
+    sub: "Scheduling · Compliance\nVendor coordination",
+    accent: true,
+    muster: true,
   },
   {
+    id: "floor",
     label: "Kill Floor",
-    detail: "Ready. No surprises.",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-      </svg>
-    ),
-    highlight: false,
+    sub: "Operations ready.\nNo surprises.",
+    accent: false,
+    muster: false,
   },
 ];
 
-const floatingCards = [
-  { label: "NVD received",       status: "ok",      delay: "0s" },
-  { label: "Capacity: 86%",      status: "neutral",  delay: "0.15s" },
-  { label: "⚠ 1 action needed", status: "warn",     delay: "0.3s" },
+const details = [
+  { label: "NVD received",      ok: true  },
+  { label: "Vendor confirmed",  ok: true  },
+  { label: "Capacity: 86%",     ok: null  },
+  { label: "1 NVD overdue",     ok: false },
 ];
+
+function ArrowRight() {
+  return (
+    <div className="hidden md:flex flex-col items-center justify-center px-1 shrink-0">
+      <div className="flex items-center gap-0">
+        <div className="w-12 lg:w-20 h-px bg-[#D6D3CB]" />
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="#D6D3CB">
+          <path d="M0 5h8M5 1l4 4-4 4" stroke="#D6D3CB" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 export default function WorkflowDiagram() {
   return (
-    <div className="relative select-none">
-      {/* Main flow */}
-      <div className="flex flex-col sm:flex-row items-center gap-0">
-        {steps.map((step, i) => (
-          <div key={step.label} className="flex flex-col sm:flex-row items-center flex-1 min-w-0">
-            {/* Node */}
-            <div className={`relative flex flex-col items-center rounded-2xl p-5 w-full sm:w-auto sm:min-w-[130px] transition-all ${
-              step.highlight
-                ? "bg-[#111111] text-white shadow-xl shadow-black/20"
-                : "bg-white border border-[#E5E2DB] text-[#111111]"
-            }`}>
-              {step.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F5A623] text-[#111111] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-                  Muster
+    <div className="w-full">
+      {/* Main flow row */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-3 md:gap-0">
+        {nodes.map((node, i) => (
+          <div key={node.id} className="flex flex-col md:flex-row items-center">
+            {/* Node card */}
+            <div className={`
+              relative rounded-2xl px-6 py-6 w-full md:w-[168px] lg:w-[184px] text-center
+              transition-all duration-300
+              ${node.muster
+                ? "bg-[#1C1917] shadow-2xl shadow-[#1C1917]/25 ring-2 ring-[#D97706]/60 scale-105 z-10"
+                : "bg-white border border-[#E5E3DC] shadow-lg shadow-black/[0.04]"
+              }
+            `}>
+              {node.muster && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D97706] text-[#1C1917] text-[10px] font-black uppercase tracking-[0.18em] px-3.5 py-1 rounded-full whitespace-nowrap">
+                  Coordination layer
                 </div>
               )}
-              <div className={`mb-3 mt-1 ${step.highlight ? "text-[#F5A623]" : "text-[#6B7280]"}`}>
-                {step.icon}
-              </div>
-              <p className={`text-xs font-bold leading-tight text-center mb-1 ${step.highlight ? "text-white" : "text-[#111111]"}`}>
-                {step.label}
+              <p className={`text-base font-bold mb-2 ${node.muster ? "text-white" : "text-[#1C1917]"}`}>
+                {node.label}
               </p>
-              <p className={`text-[10px] leading-tight text-center ${step.highlight ? "text-white/55" : "text-[#6B7280]"}`}>
-                {step.detail}
+              <p className={`text-[11px] leading-[1.6] whitespace-pre-line ${node.muster ? "text-white/45" : "text-[#78716C]"}`}>
+                {node.sub}
               </p>
             </div>
 
-            {/* Arrow connector */}
-            {i < steps.length - 1 && (
-              <div className="sm:flex-1 flex sm:flex-row flex-col items-center justify-center px-1 sm:px-2 py-2 sm:py-0">
-                <div className="hidden sm:flex items-center gap-1 flex-1">
-                  <div className="flex-1 h-px bg-[#E5E2DB]" />
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D1C9BE" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
-                </div>
-                <div className="sm:hidden w-px h-6 bg-[#E5E2DB]" />
-              </div>
-            )}
+            {/* Connector */}
+            {i < nodes.length - 1 && <ArrowRight />}
           </div>
         ))}
       </div>
 
-      {/* Floating status cards */}
-      <div className="mt-8 flex flex-wrap gap-3 justify-center">
-        {floatingCards.map(c => (
-          <div key={c.label}
-            style={{ animationDelay: c.delay }}
-            className={`fade-up inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-medium ${
-              c.status === "ok"      ? "border-emerald-200 bg-emerald-50 text-emerald-700" :
-              c.status === "warn"    ? "border-amber-200 bg-amber-50 text-amber-700" :
-              "border-[#E5E2DB] bg-white text-[#6B7280]"
+      {/* Detail pills row */}
+      <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
+        {details.map(d => (
+          <div key={d.label}
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold ${
+              d.ok === true
+                ? "border-emerald-200/80 bg-emerald-50 text-emerald-700"
+                : d.ok === false
+                ? "border-amber-200/80 bg-amber-50 text-amber-700"
+                : "border-[#E5E3DC] bg-white text-[#78716C]"
             }`}>
-            {c.status === "ok" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />}
-            {c.label}
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+              d.ok === true ? "bg-emerald-500" : d.ok === false ? "bg-amber-500" : "bg-[#D6D3CB]"
+            }`} />
+            {d.label}
           </div>
         ))}
       </div>
