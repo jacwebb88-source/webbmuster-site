@@ -13,118 +13,60 @@ const features = [
   { n: "08", title: "Forecasting",           body: "12-week kill volume and revenue projections based on forward bookings and historical patterns." },
 ];
 
-const timeline = [
-  { step: "01", title: "Apply for the pilot",  body: "Tell us about your plant. We're working with a small number of processors first and will work through the fit together." },
-  { step: "02", title: "Setup and config",     body: "We configure WebbMuster for your vendors, programs, specs and compliance requirements. Typically one to two weeks." },
-  { step: "03", title: "Go live",              body: "Scheduling, vendor coordination and the Operations Agent active from your first kill week." },
-];
-
-function Chevron() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  );
-}
-
 export default function Processing() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-[#FAFAF8]">
       <Nav />
 
-      {/* Hero */}
-      <section className="relative bg-[#050e07] overflow-hidden">
-        <div className="hero-grid absolute inset-0 pointer-events-none opacity-60" />
-        <div className="hero-glow absolute inset-0 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-24 pb-28 md:pt-32 md:pb-36">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-400 mb-8 fade-up fade-up-1">
+      {/* ══ HERO ══════════════════════════════════════════ */}
+      <section className="bg-[#FAFAF8]">
+        <div className="max-w-4xl mx-auto px-8 md:px-10">
+
+          <p className="fade-up d1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#A8A29E] pt-36 md:pt-56 mb-12">
             Processing
           </p>
-          <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-bold text-white leading-[1.06] tracking-tight mb-6 max-w-2xl fade-up fade-up-2">
-            WebbMuster<br />Processing
+
+          <h1 className="display fade-up d2 text-[2.75rem] md:text-[4rem] lg:text-[5rem] font-extrabold text-[#1C1917] leading-[1.05]">
+            Muster<br />
+            <span className="text-[#C4BDB6]">Processing.</span>
           </h1>
-          <p className="text-white/45 text-lg leading-relaxed max-w-lg mb-10 fade-up fade-up-3">
-            Scheduling, vendor coordination, compliance and animal traceability. Operational infrastructure for red meat processors — from booking to boning.
+
+          <p className="fade-up d3 text-xl md:text-2xl text-[#78716C] leading-relaxed max-w-lg mt-16 md:mt-20">
+            Scheduling, vendor coordination, compliance and animal traceability. For abattoirs and processing plants — from booking to boning.
           </p>
-          <div className="flex flex-wrap gap-3 fade-up fade-up-4">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              Apply for the pilot <Chevron />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 border border-white/15 text-white/60 hover:text-white hover:border-white/30 font-medium text-sm px-5 py-2.5 rounded-lg transition-colors"
-            >
-              Get in Touch
+
+          <div className="fade-up d4 mt-16 pb-40 md:pb-56">
+            <a href="#contact"
+              className="inline-flex items-center bg-[#D97706] text-[#1C1917] font-bold text-base px-8 py-4 rounded-xl hover:bg-[#B45309] transition-colors">
+              Apply for the pilot
             </a>
           </div>
+
         </div>
       </section>
 
-      {/* Who it's for */}
-      <section className="border-b border-gray-100 py-5 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-2.5">
-          <span className="text-[11px] font-medium uppercase tracking-widest text-gray-300 mr-2">For</span>
-          {["Abattoirs", "Processing plants of all sizes"].map(w => (
-            <span key={w} className="text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3.5 py-1.5">{w}</span>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-gray-50 border-t border-gray-100">
+      {/* ══ FEATURES ══════════════════════════════════════ */}
+      <section className="bg-[#F3F1EB] border-t border-[#E5E3DC] py-40 md:py-64 px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-600 mb-4">Platform</p>
-          <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-16">What's included</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-x-16 gap-y-12">
+
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A8A29E] mb-12">Platform</p>
+
+          <h2 className="display text-4xl md:text-5xl font-bold text-[#1C1917] mb-20 md:mb-28">
+            What's included.
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
             {features.map(f => (
               <div key={f.n}>
-                <div className="flex items-baseline gap-3 mb-2.5">
-                  <span className="text-[11px] font-mono font-bold text-gray-300 select-none shrink-0">{f.n}</span>
-                  <h3 className="font-semibold text-gray-900">{f.title}</h3>
+                <div className="flex items-baseline gap-4 mb-3">
+                  <span className="text-[11px] font-mono font-bold text-[#C4BDB6] select-none shrink-0">{f.n}</span>
+                  <h3 className="text-base font-bold text-[#1C1917]">{f.title}</h3>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed pl-[calc(11px+0.75rem)]">{f.body}</p>
+                <p className="text-base text-[#78716C] leading-relaxed pl-[calc(11px+1rem)]">{f.body}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* How it works */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-600 mb-4">Getting started</p>
-          <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-16">How it works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {timeline.map(t => (
-              <div key={t.step} className="rounded-2xl border border-gray-100 bg-gray-50 p-7">
-                <span className="text-[11px] font-mono font-bold text-gray-300 block mb-4">{t.step}</span>
-                <h3 className="font-semibold text-gray-900 mb-3">{t.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{t.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pilot CTA */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-[#050e07]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-10">
-          <div className="max-w-xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-400 mb-5">Pilot Program</p>
-            <h2 className="text-4xl font-bold text-white tracking-tight mb-4">Be part of the first group.</h2>
-            <p className="text-white/40 text-sm leading-relaxed">
-              We're running WebbMuster Processing in a small number of plants. If you're interested, get in touch — we'll configure it around your operation.
-            </p>
-          </div>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-semibold text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors shrink-0"
-          >
-            Apply for the pilot <Chevron />
-          </a>
         </div>
       </section>
 
