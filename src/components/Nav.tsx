@@ -6,47 +6,48 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 8);
+    const handler = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const linkClass = (path: string) =>
-    `hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
-      pathname === path
-        ? "bg-gray-100 text-gray-900"
-        : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-    }`;
-
-  return (
-    <header
-      className={`sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b transition-all duration-200 ${
-        scrolled ? "border-gray-200/80 shadow-sm" : "border-transparent"
+  const navLink = (to: string, label: string) => (
+    <Link
+      to={to}
+      className={`text-sm transition-colors px-3 py-1.5 rounded-md ${
+        pathname === to
+          ? "text-slate-900 font-medium"
+          : "text-slate-500 hover:text-slate-900"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5 shrink-0">
-          <img src="/logo.png" alt="Muster" className="h-7 w-7 rounded-lg object-cover" />
-          <span className="text-sm font-semibold tracking-tight text-gray-900">WebbMuster</span>
+      {label}
+    </Link>
+  );
+
+  return (
+    <header className={`sticky top-0 z-50 bg-white/95 backdrop-blur-sm transition-shadow duration-150 ${
+      scrolled ? "shadow-[0_1px_0_0_#e2e8f0]" : "border-b border-slate-100"
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 h-[60px] flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="WebbMuster" className="h-[26px] w-[26px] rounded-md object-cover" />
+          <span className="text-[15px] font-semibold tracking-tight text-slate-900">WebbMuster</span>
         </Link>
 
-        <nav className="flex items-center gap-0.5">
-          <Link to="/on-farm" className={linkClass("/on-farm")}>On Farm</Link>
-          <Link to="/processing" className={linkClass("/processing")}>Processing</Link>
+        <nav className="hidden md:flex items-center gap-0.5">
+          {navLink("/processing", "Processing")}
+          {navLink("/on-farm", "On Farm")}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#contact"
-            className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors hidden sm:inline-flex"
-          >
+          <a href="#contact" className="hidden sm:block text-sm text-slate-500 hover:text-slate-900 transition-colors px-3 py-1.5">
             Contact
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 bg-gray-900 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+            className="text-sm font-semibold text-white bg-slate-900 px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors"
           >
-            Get in Touch
+            Apply for Pilot
           </a>
         </div>
       </div>

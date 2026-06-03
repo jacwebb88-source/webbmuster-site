@@ -1,114 +1,111 @@
-const bookings = [
-  { vendor: "Smithfield Pastoral",   date: "Mon 9 Jun",  head: 120, spec: "Angus MSA",    status: "Confirmed",    nvd: true  },
-  { vendor: "Outback Cattle Co.",    date: "Mon 9 Jun",  head: 85,  spec: "GFF 100-day",  status: "NVD Required", nvd: false },
-  { vendor: "Murray Downs Station", date: "Tue 10 Jun", head: 200, spec: "Brahman Export",status: "Confirmed",    nvd: true  },
-  { vendor: "Mackay Grazing",        date: "Wed 11 Jun", head: 150, spec: "Angus MSA",    status: "Pending",      nvd: null  },
-  { vendor: "Thompson Brothers",     date: "Thu 12 Jun", head: 95,  spec: "Wagyu GFF",    status: "Confirmed",    nvd: true  },
+const rows = [
+  { vendor: "Smithfield Pastoral",  date: "Mon 9 Jun",  spec: "Angus MSA",     head: 120, status: "Ready",        nvd: "Received" },
+  { vendor: "Outback Cattle Co.",   date: "Mon 9 Jun",  spec: "GFF 100-day",   head: 85,  status: "NVD Required", nvd: "Overdue"  },
+  { vendor: "Murray Downs Station", date: "Tue 10 Jun", spec: "Brahman Export", head: 200, status: "Ready",        nvd: "Received" },
+  { vendor: "Mackay Grazing",       date: "Wed 11 Jun", spec: "Angus MSA",     head: 150, status: "Pending",      nvd: "Awaiting" },
+  { vendor: "Thompson Brothers",    date: "Thu 12 Jun", spec: "Wagyu GFF",     head: 95,  status: "Ready",        nvd: "Received" },
 ];
 
-const stats = [
-  { label: "Booked this week", value: "650", unit: "head" },
-  { label: "Capacity utilisation", value: "86", unit: "%" },
-  { label: "NVDs outstanding", value: "3", unit: "" },
-];
-
-function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    "Confirmed":     "bg-emerald-50 text-emerald-700 border border-emerald-200",
-    "NVD Required":  "bg-amber-50  text-amber-700  border border-amber-200",
-    "Pending":       "bg-gray-100  text-gray-500   border border-gray-200",
+function StatusPill({ s }: { s: string }) {
+  const map: Record<string, string> = {
+    "Ready":        "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+    "NVD Required": "bg-amber-50   text-amber-700   ring-1 ring-amber-200",
+    "Pending":      "bg-slate-100  text-slate-500   ring-1 ring-slate-200",
   };
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium ${styles[status] ?? "bg-gray-100 text-gray-500"}`}>
-      {status}
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${map[s] ?? "bg-slate-100 text-slate-500"}`}>
+      {s}
     </span>
   );
 }
 
-function NVDBadge({ nvd }: { nvd: boolean | null }) {
-  if (nvd === true)  return <span className="text-emerald-500 text-sm">✓</span>;
-  if (nvd === false) return <span className="text-amber-500 text-xs font-semibold">Required</span>;
-  return <span className="text-gray-300 text-sm">—</span>;
+function NVDCell({ v }: { v: string }) {
+  if (v === "Received") return <span className="text-emerald-600 text-xs font-medium">✓ Received</span>;
+  if (v === "Overdue")  return <span className="text-amber-600  text-xs font-semibold">⚠ Overdue</span>;
+  return <span className="text-slate-400 text-xs">Awaiting</span>;
 }
 
 export default function DashboardMockup() {
   return (
-    <div className="w-full rounded-2xl overflow-hidden card-soft">
-      {/* Window chrome */}
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-gray-100 bg-gray-50/80">
-        <div className="w-3 h-3 rounded-full bg-red-400/70" />
-        <div className="w-3 h-3 rounded-full bg-amber-400/70" />
-        <div className="w-3 h-3 rounded-full bg-emerald-400/70" />
-        <span className="ml-3 text-[11px] text-gray-400 font-medium">WebbMuster Processing — Kill Schedule</span>
+    <div className="rounded-2xl border border-slate-200 shadow-2xl shadow-slate-200/60 overflow-hidden bg-white">
+      {/* App top bar */}
+      <div className="border-b border-slate-100 px-5 py-3.5 flex items-center justify-between bg-slate-50/80">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+            <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+            <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+          </div>
+          <div className="hidden sm:flex items-center gap-1 bg-white border border-slate-200 rounded-md px-3 py-1">
+            <span className="text-[11px] text-slate-400 font-medium">WebbMuster / Intake Schedule / Week 24</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="text-[11px] font-medium text-slate-500 bg-white border border-slate-200 rounded-md px-3 py-1.5 hover:bg-slate-50">Export</button>
+          <button className="text-[11px] font-semibold text-white bg-slate-900 rounded-md px-3 py-1.5">+ New Booking</button>
+        </div>
       </div>
 
-      {/* Inner layout */}
-      <div className="p-5 bg-white">
-        {/* Header row */}
-        <div className="flex items-center justify-between mb-5">
+      <div className="p-5">
+        {/* Page header */}
+        <div className="flex items-start justify-between mb-6">
           <div>
-            <h3 className="text-sm font-semibold text-gray-900">Kill Schedule</h3>
-            <p className="text-xs text-gray-400 mt-0.5">Week of 9 Jun — 5 vendors · 650 head booked</p>
+            <h2 className="text-base font-bold text-slate-900">Intake Schedule</h2>
+            <p className="text-xs text-slate-400 mt-0.5">Week of 9 Jun 2025 &nbsp;·&nbsp; 5 vendors &nbsp;·&nbsp; 650 head booked</p>
           </div>
-          <div className="flex gap-2">
-            <button className="text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 hover:bg-gray-100 transition-colors">
-              Export
-            </button>
-            <button className="text-xs font-semibold text-white bg-gray-900 rounded-lg px-3 py-1.5 hover:bg-gray-800 transition-colors">
-              + New Booking
-            </button>
+          <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-lg px-3 py-1.5">
+            <span className="text-amber-500 text-xs">⚠</span>
+            <span className="text-[11px] font-semibold text-amber-700">1 action required</span>
           </div>
         </div>
 
-        {/* Stats row */}
+        {/* KPI row */}
         <div className="grid grid-cols-3 gap-3 mb-5">
-          {stats.map(s => (
-            <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3">
-              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wide mb-1">{s.label}</p>
-              <p className="text-xl font-bold text-gray-900">
-                {s.value}<span className="text-xs font-medium text-gray-400 ml-0.5">{s.unit}</span>
-              </p>
+          {[
+            { label: "Head booked", value: "650", sub: "This week" },
+            { label: "Capacity", value: "86%", sub: "Floor utilisation" },
+            { label: "NVDs outstanding", value: "3", sub: "Due before Monday" },
+          ].map(k => (
+            <div key={k.label} className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-1">{k.label}</p>
+              <p className="text-2xl font-bold text-slate-900 leading-none mb-0.5">{k.value}</p>
+              <p className="text-[11px] text-slate-400">{k.sub}</p>
             </div>
           ))}
         </div>
 
         {/* Table */}
-        <div className="rounded-xl border border-gray-100 overflow-hidden">
+        <div className="rounded-xl border border-slate-100 overflow-hidden">
           <table className="w-full text-xs">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="text-left px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide">Vendor</th>
-                <th className="text-left px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide hidden md:table-cell">Date</th>
-                <th className="text-left px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide hidden lg:table-cell">Spec</th>
-                <th className="text-right px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide">Head</th>
-                <th className="text-left px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide pl-4">Status</th>
-                <th className="text-left px-3.5 py-2.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wide hidden sm:table-cell">NVD</th>
+              <tr className="bg-slate-50 border-b border-slate-100">
+                {["Vendor", "Kill date", "Spec", "Head", "Status", "NVD"].map((h, i) => (
+                  <th key={h} className={`text-left px-4 py-2.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wide ${i >= 4 ? "hidden md:table-cell" : ""} ${i === 2 ? "hidden lg:table-cell" : ""}`}>{h}</th>
+                ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
-              {bookings.map((b, i) => (
-                <tr
-                  key={i}
-                  className={`transition-colors hover:bg-gray-50/80 ${i === 1 ? "bg-amber-50/30" : ""}`}
-                >
-                  <td className="px-3.5 py-2.5 font-medium text-gray-800">{b.vendor}</td>
-                  <td className="px-3.5 py-2.5 text-gray-500 hidden md:table-cell">{b.date}</td>
-                  <td className="px-3.5 py-2.5 text-gray-500 hidden lg:table-cell">{b.spec}</td>
-                  <td className="px-3.5 py-2.5 text-right font-semibold text-gray-700">{b.head}</td>
-                  <td className="px-3.5 py-2.5 pl-4"><StatusBadge status={b.status} /></td>
-                  <td className="px-3.5 py-2.5 hidden sm:table-cell"><NVDBadge nvd={b.nvd} /></td>
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={i} className={`border-b border-slate-50 last:border-0 hover:bg-slate-50/70 transition-colors ${r.status === "NVD Required" ? "bg-amber-50/30" : ""}`}>
+                  <td className="px-4 py-3 font-semibold text-slate-800 text-[13px]">{r.vendor}</td>
+                  <td className="px-4 py-3 text-slate-500">{r.date}</td>
+                  <td className="px-4 py-3 text-slate-500 hidden lg:table-cell">{r.spec}</td>
+                  <td className="px-4 py-3 font-semibold text-slate-700">{r.head}</td>
+                  <td className="px-4 py-3 hidden md:table-cell"><StatusPill s={r.status} /></td>
+                  <td className="px-4 py-3 hidden md:table-cell"><NVDCell v={r.nvd} /></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Alert bar */}
-        <div className="mt-4 flex items-center gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
-          <span className="text-amber-500 text-base leading-none">⚠</span>
-          <p className="text-[11px] text-amber-700 font-medium">
-            Outback Cattle Co. NVD not received — kill day is Monday. <span className="underline cursor-pointer">Send reminder</span>
-          </p>
+        {/* Alert */}
+        <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
+          <span className="text-amber-500 text-sm mt-0.5 shrink-0">⚠</span>
+          <div>
+            <p className="text-[12px] font-semibold text-amber-800">Outback Cattle Co. — NVD not received</p>
+            <p className="text-[11px] text-amber-600 mt-0.5">Kill day is Monday. <span className="underline cursor-pointer font-medium">Send automated reminder →</span></p>
+          </div>
         </div>
       </div>
     </div>

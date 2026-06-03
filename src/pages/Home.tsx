@@ -4,177 +4,222 @@ import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 import DashboardMockup from "../components/DashboardMockup";
 
-/* ─── Data ─────────────────────────────────────────── */
+/* ── Shared atoms ─────────────────────────────────── */
 
-const capabilities = [
-  {
-    number: "01",
-    title: "Intake Coordination",
-    body: "Manage every vendor booking from first contact to kill day. Paperwork, head counts, specs and transport — tracked in one place.",
-  },
-  {
-    number: "02",
-    title: "Compliance Management",
-    body: "NVDs, HGP declarations, MSA requirements and export certificates managed automatically. No last-minute surprises on the kill floor.",
-  },
-  {
-    number: "03",
-    title: "Kill Scheduling",
-    body: "Forward scheduling across vendors, species and programs. Know your capacity, your gaps and your commitments weeks ahead.",
-  },
-  {
-    number: "04",
-    title: "Operations Agent",
-    body: "AI-powered morning briefing and real-time alerts. Know what needs attention before the shift starts — without checking five systems.",
-  },
-  {
-    number: "05",
-    title: "Vendor Scorecard",
-    body: "Reliability, NVD compliance, change rates and pH performance scored for every supplier. Data to have the right conversations.",
-  },
-  {
-    number: "06",
-    title: "Market Intelligence",
-    body: "Live grid prices, trends and forecasting for producers. Know what the market is paying before you make a move.",
-  },
-];
-
-const platforms = [
-  {
-    tag: "Processing",
-    to: "/processing",
-    title: "WebbMuster Processing",
-    body: "For abattoirs and processing plants. Scheduling, vendor coordination, compliance and animal traceability from booking to boning.",
-    tags: ["Kill Scheduling", "Vendor Scorecard", "Compliance", "Operations Agent", "Forecasting"],
-  },
-  {
-    tag: "On Farm",
-    to: "/on-farm",
-    title: "WebbMuster On Farm",
-    body: "For producers, graziers, backgrounders and feedlots. Market intelligence, livestock traceability and AI agents.",
-    tags: ["Market Intelligence", "Livestock Traceability", "AI Agents", "Kill Results", "Bid Calculator"],
-  },
-];
-
-/* ─── Sub-components ────────────────────────────────── */
-
-function ArrowUpRight() {
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 17L17 7M7 7h10v10" />
-    </svg>
+    <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 mb-5">
+      {children}
+    </p>
   );
 }
 
-function Chevron() {
+function ChevronRight({ size = 14 }: { size?: number }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 18l6-6-6-6" />
     </svg>
   );
 }
 
-/* ─── Page ──────────────────────────────────────────── */
+/* ── Solution pillars ─────────────────────────────── */
+
+const pillars = [
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+      </svg>
+    ),
+    title: "Scheduling",
+    body: "Kill weeks planned weeks in advance. Every booking linked to a vendor, spec and head count. Capacity tracked automatically.",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+      </svg>
+    ),
+    title: "Compliance",
+    body: "NVDs, HGP declarations, MSA requirements and export certificates tracked per vendor and per kill. Nothing falls through the gaps.",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
+    title: "Communication",
+    body: "Automated reminders for outstanding paperwork. Morning briefings for your operations team. Vendors kept informed without the phone calls.",
+  },
+];
+
+/* ── Home page ────────────────────────────────────── */
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Nav />
 
-      {/* ── Hero ─────────────────────────────────────── */}
-      <section className="relative bg-[#050e07] overflow-hidden">
-        <div className="hero-grid absolute inset-0 pointer-events-none opacity-60" />
-        <div className="hero-glow absolute inset-0 pointer-events-none" />
+      {/* ══ HERO ══════════════════════════════════════ */}
+      <section className="relative bg-white border-b border-slate-100 overflow-hidden">
+        {/* Subtle dot grid — light, no glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            opacity: 0.45,
+          }}
+        />
+        {/* Soft vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-0 md:pt-28">
-          {/* Label */}
-          <div className="fade-up fade-up-1 inline-flex items-center gap-2 border border-white/10 bg-white/[0.06] rounded-full px-3.5 py-1.5 mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-white/55 text-xs font-medium tracking-wide">Operational infrastructure for red meat processors</span>
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-20 md:pb-28">
+          {/* Eyebrow */}
+          <div className="fade-up delay-1 mb-8">
+            <span className="inline-flex items-center gap-2 border border-emerald-200 bg-emerald-50 text-emerald-700 text-[11px] font-semibold tracking-wide px-3.5 py-1.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+              Intake Coordination Platform · Red Meat Processing
+            </span>
           </div>
 
           {/* Headline */}
-          <h1 className="fade-up fade-up-2 text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white leading-[1.06] tracking-tight mb-6 max-w-3xl">
-            Coordinate livestock intake.<br />
-            <span className="text-white/40">Before it reaches the floor.</span>
+          <h1 className="fade-up delay-2 text-[3rem] md:text-[4.25rem] lg:text-[5rem] font-extrabold text-slate-900 leading-[1.04] tracking-tight max-w-3xl mb-7">
+            Smart Scheduling.<br />
+            Full Visibility.<br />
+            <span className="text-slate-400">Less Waste.</span>
           </h1>
 
-          <p className="fade-up fade-up-3 text-white/45 text-lg leading-relaxed max-w-xl mb-10">
-            WebbMuster gives processors the tools to manage vendor bookings, compliance and kill scheduling — and gives producers the market intelligence to make better selling decisions.
+          {/* Sub */}
+          <p className="fade-up delay-3 text-lg text-slate-500 leading-relaxed max-w-xl mb-10">
+            WebbMuster coordinates livestock intake for red meat processors — from the first vendor booking through to the kill floor.
           </p>
 
           {/* CTAs */}
-          <div className="fade-up fade-up-4 flex flex-wrap gap-3 mb-16">
+          <div className="fade-up delay-4 flex flex-wrap gap-3">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 bg-slate-900 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              Apply for the pilot <ChevronRight />
+            </a>
             <Link
               to="/processing"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 border border-slate-200 text-slate-600 font-medium text-sm px-6 py-3 rounded-xl hover:bg-slate-50 transition-colors"
             >
-              WebbMuster Processing <Chevron />
+              See how it works <ChevronRight />
             </Link>
-            <Link
-              to="/on-farm"
-              className="inline-flex items-center gap-2 border border-white/15 text-white/65 hover:text-white hover:border-white/30 font-medium text-sm px-5 py-2.5 rounded-lg transition-colors"
-            >
-              WebbMuster On Farm <Chevron />
-            </Link>
-          </div>
-
-          {/* Dashboard mockup — bleeds to bottom of hero */}
-          <div className="fade-up fade-up-4 relative">
-            {/* Fade gradient at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050e07] to-transparent z-10 pointer-events-none" />
-            <DashboardMockup />
           </div>
         </div>
       </section>
 
-      {/* ── Proof strip ──────────────────────────────── */}
-      <section className="border-b border-gray-100 py-6 px-6 md:px-10 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Built for</p>
-          <div className="flex flex-wrap gap-x-8 gap-y-2">
-            {["Abattoirs", "Processing plants", "Pastoral companies", "Feedlots", "Graziers"].map(w => (
-              <span key={w} className="text-sm font-medium text-gray-400">{w}</span>
+      {/* ══ PROBLEM ════════════════════════════════════ */}
+      <section className="bg-slate-950 py-24 md:py-32 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl">
+            <Label><span className="text-emerald-400">The Problem</span></Label>
+            <blockquote className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.18] tracking-tight mb-8">
+              "Processor intake is still coordinated through spreadsheets, email chains and phone calls."
+            </blockquote>
+            <p className="text-slate-400 text-lg leading-relaxed max-w-2xl mb-6">
+              There's no single source of truth. NVDs go missing. Bookings change the night before. The operations team finds out on the day. It's a system built on exceptions, not structure.
+            </p>
+            <p className="text-slate-300 font-semibold text-lg">
+              WebbMuster replaces that with structured intake coordination.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SOLUTION ═══════════════════════════════════ */}
+      <section className="bg-white py-24 md:py-32 px-6 md:px-10 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <Label>The Solution</Label>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+                Scheduling.<br />Compliance.<br />Communication.
+              </h2>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+              Three things processors struggle to coordinate. One platform that handles all of them.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {pillars.map((p, i) => (
+              <div key={p.title} className="group rounded-2xl border border-slate-200 bg-white p-8 hover:border-slate-300 hover:shadow-lg transition-all duration-200">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 mb-6">
+                  {p.icon}
+                </div>
+                <div className="text-[11px] font-mono text-slate-300 mb-3 select-none">{String(i + 1).padStart(2, "0")}</div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{p.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{p.body}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Two platforms ────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-white">
+      {/* ══ PLATFORM SCREENSHOT ════════════════════════ */}
+      <section className="bg-slate-50 py-24 md:py-32 px-6 md:px-10 border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-600 mb-4">Two platforms</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.08]">
-                One product for<br className="hidden md:block" /> every side of the chain.
+              <Label>Platform</Label>
+              <h2 className="text-4xl font-bold text-slate-900 tracking-tight">
+                Built for how processors<br className="hidden md:block" /> actually work.
               </h2>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Processors and producers each get a platform built around how they actually work.
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+              Every booking, every vendor, every NVD — in one place. Your operations team knows exactly where things stand.
             </p>
           </div>
+          <DashboardMockup />
+        </div>
+      </section>
 
+      {/* ══ BOTH PLATFORMS ═════════════════════════════ */}
+      <section className="bg-white py-24 md:py-32 px-6 md:px-10 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <Label>Two platforms</Label>
+          <h2 className="text-4xl font-bold text-slate-900 tracking-tight mb-14">
+            Processing and On Farm.
+          </h2>
           <div className="grid md:grid-cols-2 gap-5">
-            {platforms.map(p => (
+            {[
+              {
+                tag: "Processing",
+                to: "/processing",
+                title: "WebbMuster Processing",
+                body: "Kill scheduling, vendor coordination, compliance management and animal traceability. Operational infrastructure for abattoirs and processing plants.",
+                tags: ["Kill Scheduling", "Vendor Scorecard", "NVD Compliance", "Operations Agent", "Forecasting"],
+                cta: "See Processing →",
+              },
+              {
+                tag: "On Farm",
+                to: "/on-farm",
+                title: "WebbMuster On Farm",
+                body: "Market intelligence, livestock traceability and AI powered agents. Everything a producer needs to make better decisions when selling, buying, trading and breeding.",
+                tags: ["Market Intelligence", "Livestock Traceability", "Kill Results", "Bid Calculator", "AI Agents"],
+                cta: "See On Farm →",
+              },
+            ].map(p => (
               <Link
                 key={p.to}
                 to={p.to}
-                className="group flex flex-col rounded-2xl bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-xl hover:-translate-y-0.5 p-8 transition-all duration-200"
+                className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
-                <div className="flex items-start justify-between mb-10">
+                <div className="flex items-center justify-between mb-8">
                   <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-600">{p.tag}</span>
-                  <span className="text-gray-300 group-hover:text-gray-500 transition-colors">
-                    <ArrowUpRight />
-                  </span>
+                  <span className="text-slate-300 group-hover:text-slate-500 transition-colors text-sm font-medium">{p.cta}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{p.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">{p.body}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{p.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1">{p.body}</p>
                 <div className="flex flex-wrap gap-2">
                   {p.tags.map(t => (
-                    <span key={t} className="text-[11px] font-medium text-gray-500 bg-white border border-gray-200 rounded-full px-3 py-1">
-                      {t}
-                    </span>
+                    <span key={t} className="text-[11px] font-medium text-slate-500 bg-white border border-slate-200 rounded-full px-3 py-1">{t}</span>
                   ))}
                 </div>
               </Link>
@@ -183,52 +228,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Capabilities grid ────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-600 mb-4">Platform</p>
-              <h2 className="text-4xl font-bold text-gray-900 tracking-tight">What WebbMuster does</h2>
-            </div>
+      {/* ══ PILOT CTA ══════════════════════════════════ */}
+      <section className="bg-slate-950 py-24 md:py-32 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-12">
+          <div className="max-w-2xl">
+            <Label><span className="text-emerald-400">Pilot Program</span></Label>
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-5">
+              Running a pilot with<br className="hidden md:block" /> your plant?
+            </h2>
+            <p className="text-slate-400 text-base leading-relaxed">
+              We're working with a small number of processing plants to run WebbMuster in a live operation. If you're interested, we'll work through the configuration directly with your team — at no cost for the pilot period.
+            </p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-            {capabilities.map(c => (
-              <div key={c.number}>
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-[11px] font-mono font-bold text-gray-300 select-none shrink-0">{c.number}</span>
-                  <h3 className="font-semibold text-gray-900">{c.title}</h3>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed pl-[calc(11px+0.75rem)]">{c.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Pilot CTA ────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-10 bg-[#050e07]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
-            <div className="max-w-2xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-400 mb-5">Pilot Program</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.08] mb-5">
-                Running a pilot with<br className="hidden md:block" /> your processing plant?
-              </h2>
-              <p className="text-white/40 text-base leading-relaxed">
-                We're working with a small number of processors to run WebbMuster in a live operation. If you're interested, get in touch — we'll work through the configuration directly with your team.
-              </p>
-            </div>
-            <div className="shrink-0 flex flex-col gap-3">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-semibold text-sm px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors"
-              >
-                Apply for the pilot <Chevron />
-              </a>
-              <p className="text-center text-white/25 text-xs">Limited availability</p>
-            </div>
+          <div className="flex flex-col gap-4 shrink-0">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 font-bold text-sm px-8 py-4 rounded-xl hover:bg-slate-100 transition-colors shadow-sm"
+            >
+              Apply for the pilot <ChevronRight />
+            </a>
+            <p className="text-center text-slate-600 text-xs">Limited to a small number of plants</p>
           </div>
         </div>
       </section>
