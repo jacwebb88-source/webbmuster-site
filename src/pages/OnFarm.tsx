@@ -61,13 +61,13 @@ export default function OnFarm() {
       <Nav />
 
       {/* Hero */}
-      <section className="bg-[#1a3d2b] text-white py-28 px-6">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-green-400 text-xs font-semibold uppercase tracking-widest mb-6">On Farm</p>
-          <h1 className="text-[clamp(40px,6vw,72px)] font-black leading-[1.05] tracking-tight mb-7">
+      <section className="bg-[#1a3d2b] text-white">
+        <div className="max-w-5xl mx-auto px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+          <p className="text-green-400 text-[11px] font-semibold uppercase tracking-[0.18em] mb-8">On Farm</p>
+          <h1 className="text-[2.5rem] md:text-[3.25rem] font-bold leading-[1.1] tracking-tight mb-6 max-w-lg">
             WebbMuster On Farm
           </h1>
-          <p className="text-xl text-green-100 leading-relaxed max-w-2xl mb-10">
+          <p className="text-green-100/80 text-base md:text-lg leading-relaxed max-w-lg mb-10">
             WebbMuster On Farm combines market intelligence, livestock traceability and AI powered agents so producers can make the best decisions when selling, buying, trading and breeding.
           </p>
           <a
@@ -75,42 +75,38 @@ export default function OnFarm() {
             className="inline-flex items-center gap-2 bg-white text-[#1a3d2b] font-semibold px-7 py-3.5 rounded-full hover:bg-green-50 transition-colors text-sm"
           >
             Get in Touch
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
             </svg>
           </a>
         </div>
       </section>
 
       {/* Who it's for */}
-      <section className="py-16 px-6 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-green-700 text-xs font-semibold uppercase tracking-widest mb-5">Who it's for</p>
-          <div className="flex flex-wrap gap-3">
-            {["Producers and graziers", "Backgrounders", "Feedlots", "Pastoral companies"].map((who) => (
-              <div key={who} className="bg-[#f0f7f3] border border-green-100 rounded-full px-5 py-2.5">
-                <p className="text-green-900 font-medium text-sm">{who}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-gray-400 text-sm mt-5">
-            WebbMuster On Farm scales from a single property through to a large multi-site enterprise.
-          </p>
+      <section className="py-10 px-6 md:px-10 bg-white border-b border-gray-100">
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-3">
+          <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mr-2">For</p>
+          {["Producers and graziers", "Backgrounders", "Feedlots", "Pastoral companies"].map((who) => (
+            <div key={who} className="bg-[#f0f7f3] border border-green-100 rounded-full px-4 py-2">
+              <p className="text-green-800 font-medium text-xs">{who}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-24 px-6 bg-[#f0f7f3]">
+      <section className="py-20 md:py-28 px-6 md:px-10 bg-[#f0f7f3]">
         <div className="max-w-5xl mx-auto">
-          <p className="text-green-700 text-xs font-semibold uppercase tracking-widest mb-4">Platform</p>
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">What's included</h2>
-          <div className="grid md:grid-cols-2 gap-5">
+          <p className="text-green-700 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3">Platform</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10">What's included</h2>
+          <div className="grid md:grid-cols-2 gap-4">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm border-l-4 border-l-green-600"
+                className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm"
               >
-                <h3 className="text-base font-semibold text-gray-900 mb-2">{f.title}</h3>
+                <div className="w-1.5 h-5 bg-green-600 rounded-full mb-4" />
+                <h3 className="font-semibold text-gray-900 mb-2">{f.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{f.description}</p>
               </div>
             ))}
@@ -119,32 +115,29 @@ export default function OnFarm() {
       </section>
 
       {/* Pricing */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-20 md:py-28 px-6 md:px-10 bg-white">
         <div className="max-w-5xl mx-auto">
-          <p className="text-green-700 text-xs font-semibold uppercase tracking-widest mb-4">Pricing</p>
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Scales with your operation</h2>
-          <p className="text-gray-500 mb-12 max-w-lg">WebbMuster On Farm scales with your operation. Contact us for pricing.</p>
+          <p className="text-green-700 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3">Pricing</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Scales with your operation</h2>
+          <p className="text-gray-500 mb-12 max-w-md text-sm leading-relaxed">Contact us to discuss pricing for your operation.</p>
           <div className="grid md:grid-cols-3 gap-5">
             {tiers.map((t) => (
               <div
                 key={t.name}
                 className={`rounded-2xl p-7 border transition-all ${
                   t.highlight
-                    ? "border-green-600 bg-[#f0f7f3] shadow-sm"
+                    ? "border-green-600 bg-[#f0f7f3]"
                     : "border-gray-200 bg-white"
                 }`}
               >
                 {t.highlight && (
-                  <p className="text-green-700 text-xs font-semibold uppercase tracking-widest mb-3">Most popular</p>
+                  <p className="text-green-700 text-[10px] font-semibold uppercase tracking-[0.14em] mb-4">Most popular</p>
                 )}
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{t.name}</h3>
+                <h3 className="text-base font-bold text-gray-900 mb-3">{t.name}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{t.description}</p>
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-400 mt-8">
-            Contact us to discuss which tier suits your operation.
-          </p>
         </div>
       </section>
 
