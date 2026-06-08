@@ -25,7 +25,7 @@ export default function Home() {
             </Link>
             <Link to="/on-farm"
               className="text-base font-medium text-[#A8A29E] hover:text-[#1C1917] transition-colors">
-              Muster On Farm →
+              Muster Livestock →
             </Link>
           </div>
 
@@ -39,7 +39,7 @@ export default function Home() {
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A8A29E] mb-12">Two platforms</p>
 
           <h2 className="display text-4xl md:text-5xl font-bold text-[#1C1917] mb-20 md:mb-28">
-            Processing and On Farm.
+            Processing and Livestock.
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -51,10 +51,10 @@ export default function Home() {
                 tags: ["Kill Scheduling", "Vendor Scorecard", "NVD Compliance", "Operations Agent", "Forecasting"],
               },
               {
-                tag: "On Farm", to: "/on-farm",
-                title: "Muster On Farm",
-                body: "For producers, graziers, backgrounders and feedlots. Market intelligence, livestock traceability and AI agents.",
-                tags: ["Market Intelligence", "Livestock Traceability", "Kill Results", "Bid Calculator", "AI Agents"],
+                tag: "Livestock", to: "/on-farm",
+                title: "Muster Livestock",
+                body: "For feedlots, backgrounders, pastoral companies and producers. Market intelligence, decision making and livestock traceability.",
+                tags: ["Market Intelligence", "Bid Calculator", "Seasonal Planner", "Kill Results", "AI Agents"],
               },
             ].map(p => (
               <Link key={p.to} to={p.to}

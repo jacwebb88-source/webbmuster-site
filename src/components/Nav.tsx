@@ -26,7 +26,7 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-1">
           {[
             { to: "/processing", label: "Processing" },
-            { to: "/on-farm",    label: "On Farm" },
+            { to: "/on-farm",    label: "Livestock" },
           ].map(({ to, label }) => (
             <Link key={to} to={to}
               className={`text-sm px-4 py-2 rounded-lg transition-colors ${

@@ -23,16 +23,16 @@ export default function OnFarm() {
         <div className="max-w-4xl mx-auto px-8 md:px-10">
 
           <p className="fade-up d1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#A8A29E] pt-36 md:pt-56 mb-12">
-            On Farm
+            Livestock
           </p>
 
           <h1 className="display fade-up d2 text-[2.75rem] md:text-[4rem] lg:text-[5rem] font-extrabold text-[#1C1917] leading-[1.05]">
             Muster<br />
-            <span className="text-[#C4BDB6]">On Farm.</span>
+            <span className="text-[#C4BDB6]">Livestock.</span>
           </h1>
 
           <p className="fade-up d3 text-xl md:text-2xl text-[#78716C] leading-relaxed max-w-lg mt-16 md:mt-20">
-            Market intelligence, livestock traceability and AI agents. For producers, graziers, backgrounders and feedlots.
+            Market intelligence, decision making and livestock traceability. For feedlots, backgrounders, pastoral companies and producers.
           </p>
 
           <div className="fade-up d4 mt-16 pb-40 md:pb-56">
